@@ -34,5 +34,15 @@ module App
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.action_controller.default_protect_from_forgery = false
+
+config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins "http://localhost:8000"
+    resource "*",
+    headers: :any,
+    methods: [:get, :post, :patch, :delete, :options, :head]
+  end
+end
+
   end
 end
