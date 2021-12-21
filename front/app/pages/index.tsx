@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { GetStaticProps } from "next";
 import axios from "axios";
+import useSWR from "swr"
+import Link from "next/link"
 
 type Post = {
   id: number;
@@ -22,6 +24,9 @@ const Home: FC<Props> = (props) => {
       </div>
       )}
       </ul>
+      <Link href="/sample">
+        <a>= Sample =</a>
+      </Link>
     </div>
   )
 }
