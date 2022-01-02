@@ -40,6 +40,7 @@ config.middleware.insert_before 0, Rack::Cors do
     origins "http://localhost:8000"
     resource "*",
     headers: :any,
+    expose: ["access-token", "expiry", "token-type", "uid", "client"],
     methods: [:get, :post, :patch, :delete, :options, :head]
   end
 end
