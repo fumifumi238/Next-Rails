@@ -1,4 +1,4 @@
-import React,{FC, useState,useEffect} from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
 import Link from "next/link";
 
@@ -6,7 +6,8 @@ type Post = {
   id: number,
   title: string
 }
-const Sample = () =>{
+
+const Sample:React.FC = () =>{
   const [posts,setPosts] = useState<Post[]>([])
   const [nextId,setNextId] = useState<number>(1)
   const [text,setText] = useState<string>("")
