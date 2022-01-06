@@ -1,5 +1,5 @@
 // サインアップ
-export interface SignUpParams {
+export type SignUpParams = {
   name: string;
   email: string;
   password: string;
@@ -7,13 +7,13 @@ export interface SignUpParams {
 }
 
 // サインイン
-export interface SignInParams {
+export type SignInParams = {
   email: string;
   password: string;
 }
 
 // ユーザー
-export interface User {
+export type User = {
   id: number;
   uid: string;
   provider: string;

@@ -7,7 +7,7 @@ type Post = {
   title: string
 }
 
-const Sample:React.FC = () =>{
+const Sample: React.FC = () =>{
   const [posts,setPosts] = useState<Post[]>([])
   const [nextId,setNextId] = useState<number>(1)
   const [text,setText] = useState<string>("")
