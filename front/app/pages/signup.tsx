@@ -13,7 +13,7 @@ const SignUp: React.FC = ()=>{
   const [password,setPassword] = useState<string>("")
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("")
 
-  const handleOnSubmit = async (e: React.MouseEvent<HTMLButtonElement>) =>{
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) =>{
     e.preventDefault()
 
     const params: SignUpParams = {
@@ -57,7 +57,7 @@ return (
 
         <label htmlFor="passwordConfirmation">PasswordConfirmation: </label>
       <input id="passwordConfirmation" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}/>
-      <button type="submit"  disabled={!name || !email || !password || !passwordConfirmation ? true : false} onClick={handleOnSubmit}>Submit</button>
+      <button type="submit"  disabled={!name || !email || !password || !passwordConfirmation ? true : false} onClick={handleSubmit}>Submit</button>
     </form>
   </div>
 )
