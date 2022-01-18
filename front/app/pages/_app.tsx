@@ -3,6 +3,7 @@ import { getCurrentUser } from "../lib/api/auth"
 import { User } from "../types"
 
 // グローバルで扱う変数・関数
+// createContextで子にpropsを渡す
 export const AuthContext = createContext({} as {
   loading: boolean
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
