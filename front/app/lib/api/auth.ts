@@ -1,7 +1,7 @@
 import client from "./client";
 import Cookies from "js-cookie";
 
-import { SignUpParams, SignInParams } from "../../types/index";
+import { SignUpParams, SignInParams } from "../../types";
 
 // サインアップ（新規アカウント作成）
 export const signUp = (params: SignUpParams) => {
