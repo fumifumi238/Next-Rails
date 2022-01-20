@@ -1,5 +1,6 @@
 import React,{useState,useEffect,createContext} from 'react'
 import {AppProps} from 'next/app';
+import {useRouter} from 'next/router';
 
 import Header from '../components/header';
 import { getCurrentUser } from "../lib/api/auth"
@@ -16,6 +17,7 @@ export const AuthContext = createContext({} as {
 })
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(true)
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
   const [currentUser, setCurrentUser] = useState<User | undefined>()
@@ -45,6 +47,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     handleGetCurrentUser()
   }, [setCurrentUser])
 
+  useEffect(() => {
+    // CSR用認証チェック
+console.log("a")
+    router.beforePopState(({ url, as, options }) => {
+      // ログイン画面とエラー画面遷移時のみ認証チェックを行わない
+      if(isSignedIn){
+        if (url === '/signin' || url !== '/signup') {
+          window.location.href = '/login';
+          return false;
+        }
+      }
+      return true;
+    });
+  }, []);
 
   return (
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser}}>

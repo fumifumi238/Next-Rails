@@ -22,7 +22,7 @@ const Header: React.FC = () =>{
         Cookies.remove("_uid")
 
          setIsSignedIn(false)
-         router.push("/signin")
+         router.replace("/signin")
          console.log("logout success")
       }else{
         console.log("logout failed")
@@ -57,7 +57,7 @@ const Header: React.FC = () =>{
   return(<>
   <AuthButtons />
   <Link href={"/"}>
-    <button>Home</button>
+    <button>Root</button>
   </Link>
   </>)
 }
