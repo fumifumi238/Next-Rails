@@ -1,11 +1,14 @@
-import React,{useState,useEffect} from "react";
+import React,{useContext,useState} from "react";
 import Cookies from "js-cookie"
 import { useRouter } from "next/router";
 
+import { AuthContext } from "./_app";
 import { signUp } from "../lib/api/auth";
 import { SignUpParams } from "../types";
 
 const SignUp: React.FC = ()=>{
+
+  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext)
   const router = useRouter()
   const [name,setName] = useState<string>("")
   const [email,setEmail] = useState<string>("")
@@ -29,9 +32,15 @@ const SignUp: React.FC = ()=>{
       console.log(res)
 
       if(res.status === 200){
-         console.log("status is 200")
-         console.log(res.data.data)
-         router.push("/")
+        Cookies.set("_access_token", res.headers["access-token"])
+        Cookies.set("_client", res.headers["client"])
+        Cookies.set("_uid", res.headers["uid"])
+
+        setIsSignedIn(true)
+        setCurrentUser(res.data.data)
+
+        router.replace("/home")
+        console.log("Signed in successfully!")
       }else{
         console.log("status is not 200")
       }

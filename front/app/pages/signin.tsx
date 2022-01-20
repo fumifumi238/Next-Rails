@@ -5,14 +5,15 @@ import Cookies from "js-cookie";
 import { AuthContext } from "./_app";
 import { SignInParams } from "../types";
 import {signIn} from "../lib/api/auth"
+import useRequireLogin from "../hooks/useRequireLogin"
 
 const SignIn: React.FC = ()=>{
   const router = useRouter()
 
-  const {setIsSignedIn,setCurrentUser} = useContext(AuthContext)
+  const {isSignedIn,setIsSignedIn,setCurrentUser} = useContext(AuthContext)
   const [email,setEmail] = useState<string>("")
   const [password,setPassword] = useState<string>("")
-
+  // useRequireLogin()
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) =>{
     e.preventDefault()
     const params: SignInParams = {
@@ -31,7 +32,7 @@ const SignIn: React.FC = ()=>{
         setIsSignedIn(true)
         setCurrentUser(res.data.data)
 
-        router.push("/")
+        router.replace("/home")
         console.log("Signed in successfully!")
 
       }else{
@@ -42,6 +43,12 @@ const SignIn: React.FC = ()=>{
     }
 
   }
+
+  if(isSignedIn){
+    return <><p>...Redirecting</p></>
+  }
+
+
 return (
 <>
 <p>this is Sign in Page</p>
