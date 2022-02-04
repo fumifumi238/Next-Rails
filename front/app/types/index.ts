@@ -25,3 +25,14 @@ export type User = {
   created_at: Date;
   updated_at: Date;
 }
+
+export type Food = {
+  id: number;
+  name: string;
+  price: number;
+  image?: {
+    url: string;
+  }
+  created_at: Date;
+  updated_at: Date;
+}
