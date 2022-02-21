@@ -1,12 +1,11 @@
-class FoodsController < ApplicationController
-
+class Api::V1::FoodsController < ApplicationController
   def index
     @foods = Food.all
     render json: @foods
   end
 
   def create
-    @food = Post.new(food_params)
+    @food = Food.new(food_params)
 
     if @food.save
       render json: @food, status: :created, location: @food
@@ -18,6 +17,6 @@ class FoodsController < ApplicationController
 private
 
   def food_params
-    params.require(:food).permit(:name,:price,:image)
+    params.permit(:name,:price,:image)
   end
 end
