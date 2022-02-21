@@ -10,8 +10,12 @@ const Food: React.FC = () =>{
   const [image,setImage] = useState<File>()
   const [preview,setPreview] = useState<string>("")
 
+  const myLoader = ({ src, width, quality }) => {
+  return `${src}?w=${width}&q=${quality || 75}`
+}
+
   useEffect(()=>{
-    axios.get(`http://localhost:3000/foods`, {
+    axios.get(`http://localhost:3000/api/v1/foods`, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -23,12 +27,15 @@ const Food: React.FC = () =>{
   },[])
 
    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) =>{
-    e.preventDefault()
-    axios.post(`http://localhost:3000/foods/`,{
+     e.preventDefault()
+    axios.post(`http://localhost:3000/api/v1/foods/`,{
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
       name: name,
       price: price,
       image: image
-    })
+    },)
 
   }
 
@@ -51,12 +58,20 @@ const Food: React.FC = () =>{
       <div key={food.id}>
       <li>商品名: {food.name}</li>
       <li>値段: {food.price}円</li>
-      <li>{food.image.url}</li>
+      {food.image?.url?
+      <>
+        <Image loader={myLoader} src={food.image.url} width={200} height={200}/>
+      </>
+
+      :<>
+      <p>no image</p>
+      </>}
+
       </div>
     )}
     </ul>
 
-  <form noValidate autoComplete="off">
+  <form noValidate  >
   <label htmlFor="email">商品名:</label>
   <input type="text" id="email" value={name} onChange={e => setName(e.target.value)}/>
   <label htmlFor="price">値段:</label>
@@ -65,7 +80,7 @@ const Food: React.FC = () =>{
       uploadImage(e)
       previewImage(e)
   }}/>
-  <button type="submit"onClick={handleSubmit}>Submit</button>
+  <button type="submit">Submit</button>
 </form>
 {preview?
           <Image

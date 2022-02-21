@@ -89,7 +89,7 @@ const Sample: React.FC = () =>{
           handleOnSubmit();
         }}>
         <input type="text" value={text} onChange={(e)=>handleOnChange(e)}/>
-        <input type="submit" value="追加" onSubmit={handleOnSubmit} />
+        <input type="submit" value="追加"/>
       </form>
         <p>{nextId}</p>
       <Link href="/">
