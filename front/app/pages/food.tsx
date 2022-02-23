@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Food: React.FC = () =>{
   const [foods,setFoods] = useState<Food[]>([])
   const [name,setName] = useState<string>("")
-  const [price,setPrice] = useState<number>(0)
+  const [price,setPrice] = useState<number>()
   const [image,setImage] = useState<File>()
   const [preview,setPreview] = useState<string>("")
 
@@ -42,11 +42,13 @@ const Food: React.FC = () =>{
     const uploadImage = useCallback((e) => {
     const file = e.target.files[0]
     setImage(file)
+    console.log(image)
   }, [])
 
     const previewImage = useCallback((e) => {
     const file = e.target.files[0]
     setPreview(window.URL.createObjectURL(file))
+    console.log(file)
   }, [])
 
 
@@ -75,7 +77,7 @@ const Food: React.FC = () =>{
   <label htmlFor="email">商品名:</label>
   <input type="text" id="email" value={name} onChange={e => setName(e.target.value)}/>
   <label htmlFor="price">値段:</label>
-  <input type="number" id="price" value={price} onChange={e => setPrice(parseInt((e.target.value)))}/>
+  <input type="text" pattern="[0-9]*" id="price" value={price} onChange={e => setPrice(Number((e.target.value)))}/>
   <input type="file" accept="image/*" onChange={e =>{
       uploadImage(e)
       previewImage(e)
