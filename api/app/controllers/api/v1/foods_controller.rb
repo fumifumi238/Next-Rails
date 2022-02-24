@@ -6,11 +6,10 @@ class Api::V1::FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-
     if @food.save
-      render json: @food, status: :created, location: @food
+      render json: { status: 200, food: @food }
     else
-      render json: @food.errors, status: :unprocessable_entity
+      render json: { status: 500, message: "失敗しました" }
     end
   end
 
