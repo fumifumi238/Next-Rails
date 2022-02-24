@@ -59,6 +59,12 @@ const Header: React.FC = () =>{
   <Link href={"/"}>
     <button>Root</button>
   </Link>
+    <Link href={"/foods"}>
+    <button>foods</button>
+  </Link>
+  <Link href={"/forms"}>
+    <button>forms</button>
+  </Link>
   </>)
 }
 
