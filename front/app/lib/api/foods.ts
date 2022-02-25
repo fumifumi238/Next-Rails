@@ -1,5 +1,4 @@
 import client from "./client";
-import { Food } from "../../types";
 
 const options = {
   headers: {
