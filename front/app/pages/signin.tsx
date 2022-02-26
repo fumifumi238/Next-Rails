@@ -5,9 +5,19 @@ import Cookies from "js-cookie";
 import { AuthContext } from "./_app";
 import { SignInParams } from "../types";
 import {signIn} from "../lib/api/auth"
-import useRequireLogin from "../hooks/useRequireLogin"
+// import useRequireLogin from "../hooks/useRequireLogin"
+
+import { TextField,Button} from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles(()=>({
+  downCaseText: {
+    textTransform: 'none',
+  }
+}))
 
 const SignIn: React.FC = ()=>{
+  const classes = useStyles()
   const router = useRouter()
 
   const {isSignedIn,setIsSignedIn,setCurrentUser} = useContext(AuthContext)
@@ -54,11 +64,30 @@ return (
 <p>this is Sign in Page</p>
 <p></p>
 <form noValidate autoComplete="off">
-  <label htmlFor="email">Email:</label>
-  <input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
-  <label htmlFor="password">PassWord</label>
-  <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
-  <button type="submit" disabled={!email || !password? true: false} onClick={handleSubmit}>Submit</button>
+        <TextField
+          id="outlined-email-input"
+          label="Email"
+          type="text"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+          <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.downCaseText}
+            disabled={!email || !password? true: false}
+            onClick={handleSubmit}
+          >
+            Sign Up
+        </Button>
 </form>
 </>)
 }
