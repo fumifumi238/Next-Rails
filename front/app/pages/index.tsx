@@ -1,46 +1,14 @@
 import React, { FC } from "react";
-import { GetStaticProps } from "next";
-import axios from "axios";
-import useSWR from "swr"
-import Link from "next/link"
 
-type Post = {
-  id: number;
-  title: string;
-}
 
-type Props = {
-  posts: Post[];
-}
-
-const Home: FC<Props> = (props) => {
+const Index: FC = () => {
   return (
     <div>
-      <h2>POSTの一覧</h2>
       <ul>
-      {props.posts.map((post)=>
-      <div key={post.id}>
-        <li>{post.id}: {post.title}</li>
-      </div>
-      )}
+        <li>redirect作る</li>
       </ul>
-      <Link href="/sample">
-        <a>= Sample =</a>
-      </Link>
     </div>
   )
 }
 
-
-export const getStaticProps: GetStaticProps = async context => {
-  const response = await fetch("http://api:3000/posts", {method: "GET"});
-  const json = await response.json();
-
-  return {
-    props: {
-      posts: json
-    },
-  };
-}
-
-export default Home;
+export default Index;

@@ -54,7 +54,7 @@ console.log("a")
       // ログイン画面とエラー画面遷移時のみ認証チェックを行わない
       if(isSignedIn){
         if (url === '/signin' || url !== '/signup') {
-          window.location.href = '/login';
+          window.location.href = '/';
           return false;
         }
       }
