@@ -6,6 +6,8 @@ import { AuthContext } from "./_app";
 import { signUp } from "../lib/api/auth";
 import { SignUpParams } from "../types";
 
+import { TextField,Button} from "@material-ui/core";
+
 const SignUp: React.FC = ()=>{
 
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext)
@@ -54,8 +56,14 @@ return (
   <div>
     <p>Sign Up Page</p>
     <form autoComplete="off">
-      <label htmlFor="name">Name: </label>
-      <input id="name" type="text" value={name} onChange={e => setName(e.target.value)}/>
+      {/* <label htmlFor="name">Name: </label>
+      <input id="name" type="text" value={name} onChange={e => setName(e.target.value)}/> */}
+      <TextField
+          id="outlined-name-input"
+          label="Name"
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}/>
 
       <label htmlFor="email">Email: </label>
       <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
