@@ -5,12 +5,15 @@ import { useRouter } from "next/router";
 import { AuthContext } from "./_app";
 import { signUp } from "../lib/api/auth";
 import { SignUpParams } from "../types";
+import { useStyles } from "./signin";
 
 import { TextField,Button} from "@material-ui/core";
 
 const SignUp: React.FC = ()=>{
 
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext)
+
+  const classes = useStyles()
   const router = useRouter()
   const [name,setName] = useState<string>("")
   const [email,setEmail] = useState<string>("")
@@ -56,24 +59,49 @@ return (
   <div>
     <p>Sign Up Page</p>
     <form autoComplete="off">
-      {/* <label htmlFor="name">Name: </label>
-      <input id="name" type="text" value={name} onChange={e => setName(e.target.value)}/> */}
       <TextField
           id="outlined-name-input"
           label="Name"
           type="text"
           value={name}
-          onChange={e => setName(e.target.value)}/>
+          onChange={e => setName(e.target.value)}
+          />
 
-      <label htmlFor="email">Email: </label>
-      <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)}/>
+      <TextField
+          id="outlined-email-input"
+          label="Email"
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+         />
 
-      <label htmlFor="password">Password: </label>
-      <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          value={password}
+          placeholder="8文字以上で入力してください"
+          onChange={e => setPassword(e.target.value)}
+         />
 
-        <label htmlFor="passwordConfirmation">PasswordConfirmation: </label>
-      <input id="passwordConfirmation" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)}/>
-      <button type="submit"  disabled={!name || !email || !password || !passwordConfirmation ? true : false} onClick={handleSubmit}>Submit</button>
+        <TextField
+          id="outlined-password-input"
+          label="PasswordConfirmation"
+          type="password"
+          value={passwordConfirmation}
+          onChange={e => setPasswordConfirmation(e.target.value)}
+         />
+
+        <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.downCaseText}
+            disabled={!name || !email || !password || !passwordConfirmation ? true : false}
+            onClick={handleSubmit}
+          >
+            Sign Up
+        </Button>
     </form>
   </div>
 )
