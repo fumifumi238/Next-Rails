@@ -10,7 +10,7 @@ import {signIn} from "../lib/api/auth"
 import { TextField,Button} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles(()=>({
+export const useStyles = makeStyles(()=>({
   downCaseText: {
     textTransform: 'none',
   }
