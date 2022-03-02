@@ -30,7 +30,7 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  // useRequireLogin()
+
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
